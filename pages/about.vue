@@ -1,38 +1,68 @@
 <template>
-    <div class="container">
-      <div class="section">
-        <p class="about-title">IK BEN EEN ILLUSTRATOR</p>
-        <p class="section-text">
-            Ik werk vanuit een gevoel van afzonderlijkheid van de wereld waarin ik leef. Er ontbreekt mij hier aan wonder. Door mijn illustraties wil ik de wereld rijker maken aan de wonderen.
-        </p>
-        <p class="section-text">
-            We leven in een super materialistische wereld en de mystiek van het bestaan wordt ons naar mijn mening ontnomen. Graag wil ik mijn bovenstaande woorden toelichten. Tegenwoordig lijkt het erop dat wij als mensen overal een antwoord op hebben, de wetenschap heeft verklaring voor alles wat er in de wereld gebeurd.
-        </p>
-        <p class="section-text">
-            Het gevoel van verwondering, dat is wat ik in mijn werkproces nastreef. Ik ben er van overtuigt dat verwondering goed is voor de menselijke ziel. Verwondering brengt ons terug in de tijd, wanneer we nog kleine kinderen waren en de wereld nog niet zo goed snapte - een staat van onschuld en niet weten- precies het tegenovergestelde toestand van de wetenschappelijke geest.Dit gevoel roep ik op door middel van creëren van onalledaagse en geestige illustraties. Onalledaags omdat je in mijn werk weinig dagelijkste taferelen zult aantreffen, en geestig omdat mijn werk veelal lach op je gezicht zult toveren.
-        </p>
-        </div>
-    </div>
-  </template>
-      <style>
-    
-      .section {
-        display: flex;
-        background-color: black;
-        align-items: center;
-        justify-content: space-evenly;
-      }
-      .about-title {
-          color:#FF4040;
-          font-size: 20px;
-          letter-spacing: 0.3rem;
-          font-weight: bold;
-      }
+  <div class="flex-container">
+    <p class="flex-item"><span class="about-title">IK BEN EEN ILLUSTRATOR</span>
+<p>
+Ik werk vanuit een gevoel van afzonderlijkheid van de wereld waarin ik leef. Er ontbreekt mij hier aan wonder. Door mijn illustraties wil ik de wereld rijker maken aan de wonderen.
+</p>
+ 
+<p>
+We leven in een super materialistische wereld en de mystiek van het bestaan wordt ons naar mijn mening ontnomen. Graag wil ik mijn bovenstaande woorden toelichten. Tegenwoordig lijkt het erop dat wij als mensen overal een antwoord op hebben, de wetenschap heeft verklaring voor alles wat er in de wereld gebeurd.
+</p>
+ 
 
-      .section-text {
-        font-size: 14px;
-        line-height: normal;
-        text-align: justify;
-      }
-  </style>
-  
+Het gevoel van verwondering, dat is wat ik in mijn werkproces nastreef. Ik ben er van overtuigt dat verwondering goed is voor de menselijke ziel. Verwondering brengt ons terug in de tijd, wanneer we nog kleine kinderen waren en de wereld nog niet zo goed snapte - een staat van onschuld en niet weten- precies het tegenovergestelde toestand van de wetenschappelijke geest.
+
+Dit gevoel roep ik op door middel van creëren van onalledaagse en geestige illustraties. Onalledaags omdat je in mijn werk weinig dagelijkste taferelen zult aantreffen, en geestig omdat mijn werk veelal lach op je gezicht zult toveren.
+    </p>
+    <div class="flex-item">
+    <img class="img-margin" src="https://static.wixstatic.com/media/c68a87_f27bf9a1765549018eee45eab6e3950e~mv2.jpg/v1/fill/w_383,h_287,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/ikdiemaak.jpg" alt="ikdiemaak.jpg" style="width: 410px; height: 287px; object-fit: cover;" width="383" height="287" srcset="https://static.wixstatic.com/media/c68a87_f27bf9a1765549018eee45eab6e3950e~mv2.jpg/v1/fill/w_383,h_287,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/ikdiemaak.jpg 1x, https://static.wixstatic.com/media/c68a87_f27bf9a1765549018eee45eab6e3950e~mv2.jpg/v1/fill/w_766,h_574,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/ikdiemaak.jpg 2x" fetchpriority="high">
+    <p>Ik ben een illustrator die voornamelijk werkt met grafiet en aquarel.
+Ik combineer deze twee mediums aan de hand van wat ik wil vertellen. Met waterverf illustreer ik intuïtieve en mysterieuze taferelen, met grafietpotlood kan ik mijn intentie volledig richten op detail en mezelf verdwalen in de maakproces. Het gelaat heeft een belangrijke rol in mijn kunst om de intentie van verwondering te overbrengen. Het maakproces zelf is voor mij een spirituele belevenis. Intentie die in de tekening wordt gestopt is erg belangrijk.
+Natuurlijk lukt dit niet altijd, maar het is wel mijn streven.
+    </p>
+    </div>
+</div>
+   
+</template>
+    
+<style>
+.flex-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  text-align: justify;
+  font-size: 14px;
+  line-height: normal;
+  padding: 10px;
+  gap: 60px; /* Set gap between flex items */
+}
+
+.flex-item {
+  flex: 1;
+  max-width: 430px;
+  box-sizing: border-box;
+  padding: 10px;
+}
+
+.about-title {
+  display: block;
+  color: #FF4040;
+  font-size: 20px;
+  letter-spacing: 0.3rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.img-margin {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin-bottom: 45px;
+}
+
+@media (max-width: 480px) {
+  .flex-container {
+    flex-direction: column; /* Stack flex items on smaller screens */
+  }
+}
+</style>

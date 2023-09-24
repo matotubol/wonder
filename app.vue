@@ -1,18 +1,53 @@
 <template>
   <div>
     <!-- Navigation -->
-    <nav>
-      <NuxtLink to="/">Portfolio</NuxtLink> |
-      <NuxtLink to="/about">Wie ben ik</NuxtLink> |
+    <div class="nav-header">
+      <nav>
+      <NuxtLink to="/">Portfolio</NuxtLink>
+      <NuxtLink to="/about">Wie ben ik</NuxtLink>
       <NuxtLink to="/contact">Contact</NuxtLink>
     </nav>
-    
+    </div>
+
     <!-- Page Content -->
-    <NuxtPage />
+    <div class="container">
+      <NuxtPage />
+
+    </div>
   </div>
 </template>
 
 <style>
+.nav-header {
+  position: relative;
+  height: 120px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+  border-top: 3px solid #f4e0c0;
+  border-bottom: 3px solid #f4e0c0;
+  margin-bottom: 50px;
+}
+
+.nav-header::before,
+.nav-header::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background-color: #f4e0c0;
+}
+
+.nav-header::before {
+  top: -8px; /* Adjusted to create a 5px gap between the lines */
+}
+
+.nav-header::after {
+  bottom: -8px; /* Adjusted to create a 5px gap between the lines */
+}
+
 @font-face {
         font-family: "Caudex";
         src: url("/fonts/Caudex-Regular.ttf") format("woff2");
@@ -28,7 +63,6 @@
 
 p {
   margin-bottom: 20px;
-  margin-left: 10px;
 }
 /* Add some basic styling for the navigation links */
 nav {
@@ -36,23 +70,23 @@ nav {
 }
 
 nav a {
-  margin-right: 10px;
+  margin-right: 20px;
   text-decoration: none;
   color: #333;
 }
 
 nav a:hover {
-  text-decoration: underline;
+  text-decoration: none;
+  font-weight: bold;
+  color: #FF4040;
 }
 .container {
-  width: calc(100% - 1000px); /* Subtracting 600px for the 300px gap on both sides */
-  margin: 0 auto; /* Horizontally center the container */
-  background-color: #8cffa0;
-}
-@media (max-width: 768px) {
-  .container {
-    gap: 0;
-    padding: 10px 300px;
+  display: flex;
+  justify-content: center;
+  min-height: 100vh; /* Updated from height to min-height */}
+
+  img:hover{
+    opacity: .8;
+    cursor: pointer;
   }
-}
 </style>

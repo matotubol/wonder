@@ -12,7 +12,6 @@
     <!-- Page Content -->
     <div class="container">
       <NuxtPage />
-
     </div>
   </div>
 </template>

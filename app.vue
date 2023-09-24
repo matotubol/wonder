@@ -86,7 +86,6 @@ nav a:hover {
   min-height: 100vh; /* Updated from height to min-height */}
 
   img:hover{
-    opacity: .8;
     cursor: pointer;
   }
 </style>

@@ -25,7 +25,7 @@ Natuurlijk lukt dit niet altijd, maar het is wel mijn streven.
    
 </template>
     
-<style>
+<style scoped>
 .flex-container {
   display: flex;
   flex-wrap: wrap;
@@ -80,7 +80,7 @@ Natuurlijk lukt dit niet altijd, maar het is wel mijn streven.
 }
 @media (width < 768px) {
   .flex-container {
-    font-size: 18px;
+    font-size: 17px;
     flex-direction: column; /* Stack flex items on smaller screens */
     gap: 10px;
   }
@@ -88,4 +88,5 @@ Natuurlijk lukt dit niet altijd, maar het is wel mijn streven.
     max-width: 100%;
   }
 }
+
 </style>

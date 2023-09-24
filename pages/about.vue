@@ -15,7 +15,7 @@ Het gevoel van verwondering, dat is wat ik in mijn werkproces nastreef. Ik ben e
 Dit gevoel roep ik op door middel van creëren van onalledaagse en geestige illustraties. Onalledaags omdat je in mijn werk weinig dagelijkste taferelen zult aantreffen, en geestig omdat mijn werk veelal lach op je gezicht zult toveren.
     </p>
     <div class="flex-item">
-    <img class="img-margin" src="https://static.wixstatic.com/media/c68a87_f27bf9a1765549018eee45eab6e3950e~mv2.jpg/v1/fill/w_383,h_287,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/ikdiemaak.jpg" alt="ikdiemaak.jpg" style="width: 410px; height: 287px; object-fit: cover;" width="383" height="287" srcset="https://static.wixstatic.com/media/c68a87_f27bf9a1765549018eee45eab6e3950e~mv2.jpg/v1/fill/w_383,h_287,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/ikdiemaak.jpg 1x, https://static.wixstatic.com/media/c68a87_f27bf9a1765549018eee45eab6e3950e~mv2.jpg/v1/fill/w_766,h_574,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/ikdiemaak.jpg 2x" fetchpriority="high">
+    <img class="img-margin" src="/img/ikdiemaak.webp" style="width: 410px; height: 287px; object-fit: cover;" width="383" height="287" fetchpriority="high">
     <p>Ik ben een illustrator die voornamelijk werkt met grafiet en aquarel.
 Ik combineer deze twee mediums aan de hand van wat ik wil vertellen. Met waterverf illustreer ik intuïtieve en mysterieuze taferelen, met grafietpotlood kan ik mijn intentie volledig richten op detail en mezelf verdwalen in de maakproces. Het gelaat heeft een belangrijke rol in mijn kunst om de intentie van verwondering te overbrengen. Het maakproces zelf is voor mij een spirituele belevenis. Intentie die in de tekening wordt gestopt is erg belangrijk.
 Natuurlijk lukt dit niet altijd, maar het is wel mijn streven.

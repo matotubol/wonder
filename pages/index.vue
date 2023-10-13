@@ -4,17 +4,22 @@
       v-for="(box, index) in arrangedBoxes"
       :key="index"
       :style="{
-        width: (box.width - 5) + 'px',
-        height: (box.height - 5) + 'px',
+        width: (box.width - 10) + 'px',
+        height: (box.height - 10) + 'px',
         top: box.top + 'px',
         left: box.left + 'px'
       }"
       class="box"
     >
-      {{ box.content }} <br>
-      top:  {{ box.top }} / Height: {{ box.height }} / Width : {{ box.width }}<br>
-      totl: {{ box.height + box.top }}<br>
+      {{ box.content }}
+      Top:  {{ box.top }}
+      Height: {{ box.height }} 
+      Width : {{ box.width }}
+      total: {{ box.height + box.top }}
       left: {{ box.left }}
+      left+ Width: {{ box.left + box.width }}
+
+    
     </div>
   </div>
 </template>
@@ -28,12 +33,17 @@ export default {
     {'height': 424, 'left': 0, 'top': 0, 'width': 600, 'content': 'box 1'},
     {'height': 530, 'left': 0, 'top': 0, 'width': 372, 'content': 'box 2'},
     {'height': 336, 'left': 0, 'top': 0, 'width': 250, 'content': 'box 3'},
-    {'height': 700, 'left': 0, 'top': 0, 'width': 350, 'content': 'box 4'},
-    {'height': 474, 'left': 0, 'top': 0, 'width': 371, 'content': 'box 6'},
-    {'height': 200, 'left': 0, 'top': 0, 'width': 250, 'content': 'box 7'},
+    {'height': 300, 'left': 0, 'top': 0, 'width': 350, 'content': 'box 4'},
+    {'height': 494, 'left': 0, 'top': 0, 'width': 371, 'content': 'box 6'},
+    {'height': 300, 'left': 0, 'top': 0, 'width': 250, 'content': 'box 7'},
     {'height': 280, 'left': 0, 'top': 0, 'width': 350, 'content': 'box 8'},
     {'height': 385, 'left': 0, 'top': 0, 'width': 250, 'content': 'box 9'},
-    {'height': 418, 'left': 0, 'top': 0, 'width': 335, 'content': 'box 10'},
+    {'height': 418, 'left': 0, 'top': 0, 'width': 418, 'content': 'box 10'},
+    {'height': 100, 'left': 0, 'top': 0, 'width': 200, 'content': 'box 11'},
+   // {'height': 48, 'left': 0, 'top': 0, 'width': 301, 'content': 'box 11'},
+
+
+
 
       ],
       containerWidth: 1000,
@@ -157,7 +167,7 @@ export default {
 
 .box {
   position: absolute;
-  border: solid 1px black;
+  border: solid 1px red;
   display: flex;
   justify-content: center;
   align-items: center;

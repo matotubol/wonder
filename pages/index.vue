@@ -1,167 +1,165 @@
 <template>
   <div class="container">
-    <masonry-wall :items="items" :ssr-columns="1" :column-width="300" :gap="7" :min-columns="1">
-      <template #default="{ item, index }">
-        <div class="image-box" @click="openImage(item.imageSrc, index)">
-          <img :src="item.imageSrc" :alt="item.title" style="width: 100%; max-width: 980px;">
-        </div>
-      </template>
-    </masonry-wall>
-    <!-- Overlay for Fullscreen -->
-    <div v-if="selectedImage" class="overlay" @click="closeImage">
-      <button class="download-btn" @click.stop="downloadImage">Download</button>
-      <button class="prev-btn" @click.stop="navigate(-1)">←</button>
-      <img :src="selectedImage" class="overlay-image" />
-      <button class="next-btn" @click.stop="navigate(1)">→</button>
+    <div
+      v-for="(box, index) in arrangedBoxes"
+      :key="index"
+      :style="{
+        width: (box.width - 5) + 'px',
+        height: (box.height - 5) + 'px',
+        top: box.top + 'px',
+        left: box.left + 'px'
+      }"
+      class="box"
+    >
+      {{ box.content }} <br>
+      top:  {{ box.top }} / Height: {{ box.height }} / Width : {{ box.width }}<br>
+      totl: {{ box.height + box.top }}<br>
+      left: {{ box.left }}
     </div>
   </div>
 </template>
 
-<script setup lang="ts">
-import { ref, Ref } from 'vue';
 
-interface Item {
-  title: string;
-  description: string;
-  imageSrc: string;
-}
+<script>
+export default {
+  data() {
+    return {
+      boxes: [
+    {'height': 424, 'left': 0, 'top': 0, 'width': 600, 'content': 'box 1'},
+    {'height': 530, 'left': 0, 'top': 0, 'width': 372, 'content': 'box 2'},
+    {'height': 336, 'left': 0, 'top': 0, 'width': 250, 'content': 'box 3'},
+    {'height': 700, 'left': 0, 'top': 0, 'width': 350, 'content': 'box 4'},
+    {'height': 474, 'left': 0, 'top': 0, 'width': 371, 'content': 'box 6'},
+    {'height': 200, 'left': 0, 'top': 0, 'width': 250, 'content': 'box 7'},
+    {'height': 280, 'left': 0, 'top': 0, 'width': 350, 'content': 'box 8'},
+    {'height': 385, 'left': 0, 'top': 0, 'width': 250, 'content': 'box 9'},
+    {'height': 418, 'left': 0, 'top': 0, 'width': 335, 'content': 'box 10'},
 
-const items: Item[] = [  {
-    title: 'First Image',
-    description: 'The first image description.',
-    imageSrc: '/img/1.jpg'
+      ],
+      containerWidth: 1000,
+    };
   },
-  {
-    title: 'Second Image',
-    description: 'The second image description.',
-    imageSrc: '/img/2.jpeg'
-  },
-  {
-    title: 'Second Image',
-    description: 'The second image description.',
-    imageSrc: '/img/3.jpg'
-  },
-  {
-    title: 'Second Image',
-    description: 'The second image description.',
-    imageSrc: '/img/4.jpeg'
-  },
-  {
-    title: 'Second Image',
-    description: 'The second image description.',
-    imageSrc: '/img/5.jpeg'
-  },
-  {
-    title: 'Second Image',
-    description: 'The second image description.',
-    imageSrc: '/img/6.webp'
-  },
-  {
-    title: 'Second Image',
-    description: 'The second image description.',
-    imageSrc: '/img/7.jpeg'
-  },
-  {
-    title: 'Second Image',
-    description: 'The second image description.',
-    imageSrc: '/img/6.webp'
-  },
-  {
-    title: 'Second Image',
-    description: 'The second image description.',
-    imageSrc: '/img/6.webp'
-  },
-  {
-    title: 'Second Image',
-    description: 'The second image description.',
-    imageSrc: '/img/6.webp'
-  },
-  {
-    title: 'Second Image',
-    description: 'The second image description.',
-    imageSrc: '/img/6.webp'
-  },  {
-    title: 'Second Image',
-    description: 'The second image description.',
-    imageSrc: '/img/6.webp'
-  },
-  
-  // Add more items...
-];
+  computed: {
+    arrangedBoxes() {
+        let new_arrangement = [];
+        let remaining_boxes = [...this.boxes];
+        let previous_row_boxes = [];
+        let row_number = 1;
+        let lowestTopPlusHeightInRow = 0;  // Initialize lowest top + height tracker
 
-const selectedImage: Ref<string | null> = ref(null);
-const selectedIndex: Ref<number | null> = ref(null);
+        while (remaining_boxes.length > 0) {
+            let current_row_boxes = [];
+            let current_row_width = 0;
+            lowestTopPlusHeightInRow = Infinity;  // Reset for each new row
 
-const openImage = (src: string, index: number): void => {
-  selectedImage.value = src;
-  selectedIndex.value = index;
+
+        if (previous_row_boxes.length > 0) {
+          for (let prev_box of previous_row_boxes) {
+            let target_width = prev_box.width;
+            let matching_boxes = this.findBoxes(remaining_boxes, target_width);
+            if (matching_boxes.length > 0) {
+              current_row_boxes.push(...matching_boxes);
+              for (let box of matching_boxes) {
+                let index = remaining_boxes.indexOf(box);
+                if (index !== -1) remaining_boxes.splice(index, 1);
+                current_row_width += box.width;
+              }
+            }
+          }
+        }
+
+        if (current_row_boxes.length === 0 || current_row_width < this.containerWidth) {
+          for (let box of remaining_boxes) {
+            let widthExists = current_row_boxes.some(existingBox => existingBox.width === box.width);
+            if (!widthExists && current_row_width + box.width <= this.containerWidth) {
+              current_row_boxes.push(box);
+              current_row_width += box.width;
+            }
+          }
+        }
+
+        if (current_row_boxes.length > 0) {
+              let left_position = 0;
+              for (let position = 0; position < current_row_boxes.length; position++) {
+                let box = current_row_boxes[position];
+                box.left = left_position;
+
+                let highest_overlap = 0;
+                if (previous_row_boxes.length > 0) {
+                  for (let prev_box of previous_row_boxes) {
+                    let overlaps = (prev_box.left + prev_box.width > box.left) && 
+                                   (prev_box.left < box.left + box.width);
+                    if (overlaps) {
+                      highest_overlap = Math.max(highest_overlap, prev_box.top + prev_box.height);
+                    }
+                  }
+                }
+
+                // Compare highest_overlap with lowestTopPlusHeightInRow
+                if(highest_overlap <= lowestTopPlusHeightInRow) {
+                  box.top = highest_overlap;
+                  lowestTopPlusHeightInRow = Math.min(lowestTopPlusHeightInRow, highest_overlap + box.height);  // Update tracker
+
+                  new_arrangement.push({
+                    content: `${row_number}.${position + 1} ${box.content}`,
+                    top: box.top,
+                    left: box.left,
+                    width: box.width,
+                    height: box.height,
+                  });
+                  left_position += box.width;
+                }
+              }
+
+              for (let box of current_row_boxes) {
+                let index = remaining_boxes.indexOf(box);
+                if (index !== -1) remaining_boxes.splice(index, 1);
+              }
+
+              previous_row_boxes = [...current_row_boxes];
+              row_number += 1;
+            } else {
+              break;
+            }
+        }
+
+        return new_arrangement;
+    },
+  },
+  methods: {
+    findBoxes(remaining_boxes, target_width) {
+      for (let box of remaining_boxes) {
+        if (box.width === target_width) {
+          return [box];
+        }
+      }
+      for (let i = 0; i < remaining_boxes.length; i++) {
+        for (let j = i + 1; j < remaining_boxes.length; j++) {
+          let box1 = remaining_boxes[i];
+          let box2 = remaining_boxes[j];
+          if (box1.width + box2.width === target_width && box1.width !== box2.width) {
+            return [box1, box2];
+          }
+        }
+      }
+      return [];
+    },
+  },
 };
 
-const closeImage = (): void => {
-  selectedImage.value = null;
-  selectedIndex.value = null;
-};
-
-const navigate = (direction: number): void => {
-  if (selectedIndex.value !== null) {
-    const newIndex = selectedIndex.value + direction;
-    if (newIndex >= 0 && newIndex < items.length) {
-      selectedIndex.value = newIndex;
-      selectedImage.value = items[newIndex].imageSrc;
-    }
-  }
-};
-
-const downloadImage = (): void => {
-  if (selectedImage.value) {
-    window.open(selectedImage.value, '_blank');
-  }
-};
 </script>
 
 <style scoped>
-/* Existing Styles */
 .container {
-  max-width: 980px;
-  margin: auto;
-}
-.image-box {
   position: relative;
+  width: 1000px;
 }
-/* New Styles for Overlay and Buttons */
-.overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.7);
+
+.box {
+  position: absolute;
+  border: solid 1px black;
   display: flex;
-  align-items: center;
   justify-content: center;
-}
-.overlay-image {
-  max-width: 90%;
-  max-height: 90%;
-}
-.download-btn,
-.prev-btn,
-.next-btn {
-  position: fixed;
-  background: white;
-  border: none;
-  cursor: pointer;
-  padding: 10px;
-  z-index: 1;
-}
-.download-btn {
-  top: 15px;
-  right: 15px;
-}
-.prev-btn {
-  left: 15px;
-}
-.next-btn {
-  right: 15px;
+  align-items: center;
 }
 </style>
